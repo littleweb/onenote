@@ -1,0 +1,22 @@
+{
+  "name": "onepp",
+  "version": "1.0.0",
+  "description": "a framework on nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "null"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/littleweb/onenote.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "nico",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/littleweb/onenote/issues"
+  },
+  "homepage": "https://github.com/littleweb/onenote#readme"
+}
