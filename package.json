@@ -1,14 +1,17 @@
 {
-  "name": "onepp",
-  "version": "1.0.0",
+  "name": "onemin",
+  "version": "1.0.1",
   "description": "a framework on nodejs",
   "main": "index.js",
   "scripts": {
     "test": "null"
   },
+  "bin": {
+    "onemin": "./run.js"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/littleweb/onenote.git"
+    "url": "git+https://github.com/littleweb/onepp.git"
   },
   "keywords": [
     "nodejs"
@@ -16,7 +19,34 @@
   "author": "nico",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/littleweb/onenote/issues"
+    "url": "https://github.com/littleweb/onepp/issues"
   },
-  "homepage": "https://github.com/littleweb/onenote#readme"
+  "homepage": "https://github.com/littleweb/onepp#readme",
+  "dependencies": {
+    "@hapi/hapi": "*",
+    "yargs": "*",
+    "rd": "*",
+    "pm2": "*",
+    "axios": "*",
+    "dir2json": "*",
+    "catbox-redis": "*",
+    "inert": "*",
+    "moment": "*",
+    "mongoose": "*",
+    "nunjucks": "*",
+    "redis": "*",
+    "h2o2": "*",
+    "hapi-auth-basic": "*",
+    "hapi-swagger": "*",
+    "vision": "*",
+    "joi": "*",
+    "ua-parser-js": "*",
+    "catbox-disk": "*",
+    "fis3-ug": "*",
+    "elasticsearch": "*",
+    "ip2region": "*",
+    "b64": "^4.1.2",
+    "hoek": "^6.1.2",
+    "yamljs": "*"
+  }
 }

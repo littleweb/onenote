@@ -15,4 +15,11 @@ module.exports = app => {
 		ctx.status = 403;
 		return '未登录';
 	});
+	app.get('/curl', async ctx => {
+		let data = await app.curl('https://od.sh-d.com/D883F318EF46003A4');
+		return data.data;
+	});
+	app.get('/guid', async ctx => {
+		return app.guid();
+	});
 }
