@@ -65,7 +65,7 @@ http://localhost:9230
 
 ### 配置
 
-> onemin虽然支持0配置，也支持配置文件的设定，开发者可通过config.js|.json进行项目的配置
+> onemin也支持配置文件的设定，开发者可通过config.js|.json进行项目的配置
 
 开发模式
 
@@ -88,7 +88,80 @@ exports = {
 }
 ```
 
-## 二、路由、业务、事件
+## 二、应用、路由、业务、事件
+
+### 应用（app）
+
+onemin采用灵活的文件组织结构来架构应用，每一个js文件都可以成为一个应用，项目启动时文件会被自动读取并挂载到app根下，多个js文件和目录会形成一个树形的调用结构。
+
+`*.js`
+
+> onemin运行时js文件格式如下，提供app根变量
+
+```
+module.exports = app => {
+	app.get('/', ctx => {
+		return 'xxx';
+	});
+}
+```
+
+几个特点
+
+- 自动路由：路由以目录结构进行分层，自动补全，无需额外引用和指定。
+
+> 减少路由的引用维护，增强了模块化的灵活调配性。
+
+目录树
+```
+|--index.js
+|--user
+|--|--index.js
+|--|--login.js
+|--product
+|--|--index.js
+|--|--detail.js
+```
+
+路由表
+```
+/
+/user/
+/user/login
+/product/
+/product/detail
+```
+
+- 调用链：项目下面所有的目录和文件都可被读取并挂载到app根节点树下，进行路径链调用。
+
+> 减少跨模块引用，增加使用效率
+
+目录树
+```
+|--index.js
+|--service
+|--|--guid.js
+|--|--timer.js
+|--|--tools
+|--|--|--axios.js
+|--data
+|--|--cmt.json
+|--|--api.js
+```
+
+调用链
+```
+module.exports = app => {
+	app.get('/', ctx => {
+		let guid = app.service.guid();
+		let timer = app.service.timer();
+		let list = await app.service.tools.axios.get('url');
+		let cmt = await app.data.cmt;
+		let api = await app.data.api();
+		return query;
+	});
+}
+```
 
 ### 路由
 
@@ -122,7 +195,7 @@ module.exports = app => {
 
 ```
 module.exports = app => {
-	app.get('/', ctx => {
+	app.form('/', ctx => {
 		let data = ctx.form;
 		return data;
 	});
@@ -187,7 +260,7 @@ module.exports = app => {
 
 ## 四、数据库、缓存
 
-### 数据
+### 数据库
 
 1、mongo
 

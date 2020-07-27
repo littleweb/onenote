@@ -22,4 +22,8 @@ module.exports = app => {
 	app.get('/guid', async ctx => {
 		return app.guid();
 	});
+	app.get('/mongo', async ctx => {
+		app.mongo.model.userInfo = {};
+		return 'mongo';
+	});
 }
