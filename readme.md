@@ -15,7 +15,7 @@ npm i onemin -g
 1、创建
 
 `index.js`
-```
+```javascript
 module.exports = app => {
   app.get('/', ctx => {
     return "hello word";
@@ -43,7 +43,7 @@ docker run -it -p 9230:9230 -v /$PWD:/app libinzhang/onemin onemin
 ```
 
 docker-compose.yml
-```
+```yml
 version: '2'
 services:
   one-nginx:
@@ -69,9 +69,8 @@ http://localhost:9230
 
 开发模式
 
-```
+```javascript
 //config.js
-
 exports = {
   "name": "项目名称",
   "port": 9230,//项目端口
@@ -79,9 +78,8 @@ exports = {
 ```
 线上模式
 
-```
+```javascript
 //config.online.js
-
 exports = {
   "name": "项目名称",
   "port": 9230,//项目端口
@@ -98,7 +96,7 @@ onemin采用灵活的文件组织结构来架构应用，每一个js文件都可
 
 > onemin运行时js文件格式如下，提供app根变量
 
-```
+```javascript
 module.exports = app => {
   app.get('/', ctx => {
     return 'xxx';
@@ -150,7 +148,7 @@ module.exports = app => {
 ```
 
 调用链
-```
+```javascript
 module.exports = app => {
   app.get('/', ctx => {
     let guid = app.service.guid();
@@ -171,7 +169,7 @@ module.exports = app => {
 
 1、get
 
-```
+```javascript
 module.exports = app => {
   app.get('/', ctx => {
     let query = ctx.get;
@@ -181,7 +179,7 @@ module.exports = app => {
 ```
 2、post
 
-```
+```javascript
 module.exports = app => {
   app.get('/', ctx => {
     let data = ctx.post;
@@ -193,7 +191,7 @@ module.exports = app => {
 
 `ctx.form等于ctx.get+ctx.post的混合值，也可以单独取`
 
-```
+```javascript
 module.exports = app => {
   app.form('/', ctx => {
     let data = ctx.form;
@@ -226,7 +224,7 @@ ctx是每个路由的上下文变量，可以获取和设置请求的相关属�
 
 cookie
 
-```
+```javascript
 module.exports = app => {
   //设置cookie
   app.get('/', ctx => {
@@ -243,7 +241,7 @@ module.exports = app => {
 
 session
 
-```
+```javascript
 module.exports = app => {
   //设置session
   app.get('/', ctx => {
@@ -264,7 +262,7 @@ module.exports = app => {
 
 1、mongo
 
-```
+```javascript
 module.exports = app => {
   //读取
   app.get('/', ctx => {
@@ -274,7 +272,7 @@ module.exports = app => {
 }
 ```
 
-```
+```javascript
 module.exports = app => {
   app.mongo.model('model', {
     //建立字段表结构
@@ -300,7 +298,7 @@ module.exports = app => {
 
 ## 五、模板、前端
 
-```
+```javascript
 module.exports = app => {
   //模板渲染
   app.get('/', ctx => {
@@ -312,7 +310,7 @@ module.exports = app => {
 
 ## 六、静态资源
 
-```
+```javascript
 module.exports = app => {
   //读取文件
   app.get('/', ctx => {
@@ -331,7 +329,7 @@ module.exports = app => {
 
 日志
 
-```
+```javascript
 module.exports = app => {
   //记录日志
   app.get('/log', ctx => {
@@ -356,7 +354,7 @@ module.exports = app => {
 
 onemin内置axios做为httpClient，可直接通过app.curl或app.axios来调用。
 
-```
+```javascript
 module.exports = app => {
   app.get('/curl', async ctx => {
     let data = await app.curl('url');
@@ -367,7 +365,7 @@ module.exports = app => {
 
 2、定时任务：timer
 
-```
+```javascript
 module.exports = app => {
   //设置一个定时任务
   app.timer('timerid', {
