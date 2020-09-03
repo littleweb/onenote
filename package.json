@@ -1,6 +1,6 @@
 {
   "name": "onemin",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "a framework on nodejs",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/littleweb/onepp.git"
+    "url": "git+https://github.com/littleweb/onemin.git"
   },
   "keywords": [
     "nodejs"
@@ -37,6 +37,7 @@
     "redis": "*",
     "h2o2": "*",
     "hapi-auth-basic": "*",
+    "hapi-server-session": "*",
     "hapi-swagger": "*",
     "vision": "*",
     "joi": "*",

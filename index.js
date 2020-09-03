@@ -45,7 +45,7 @@ const server = Hapi.server(
 		{
 			plugin: require('./lib/exchange'),
 			options: {
-				apps: ['./plugin', appPath]
+				apps: [`${__dirname}/plugin`, appPath]
 			}
 		}
 	]);
