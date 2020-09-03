@@ -17,9 +17,9 @@ npm i onemin -g
 `index.js`
 ```
 module.exports = app => {
-	app.get('/', ctx => {
-		return "hello word";
-	});
+  app.get('/', ctx => {
+    return "hello word";
+  });
 }
 ```
 
@@ -73,8 +73,8 @@ http://localhost:9230
 //config.js
 
 exports = {
-	"name": "项目名称",
-	"port": 9230,//项目端口
+  "name": "项目名称",
+  "port": 9230,//项目端口
 }
 ```
 线上模式
@@ -83,8 +83,8 @@ exports = {
 //config.online.js
 
 exports = {
-	"name": "项目名称",
-	"port": 9230,//项目端口
+  "name": "项目名称",
+  "port": 9230,//项目端口
 }
 ```
 
@@ -100,9 +100,9 @@ onemin采用灵活的文件组织结构来架构应用，每一个js文件都可
 
 ```
 module.exports = app => {
-	app.get('/', ctx => {
-		return 'xxx';
-	});
+  app.get('/', ctx => {
+    return 'xxx';
+  });
 }
 ```
 
@@ -152,14 +152,14 @@ module.exports = app => {
 调用链
 ```
 module.exports = app => {
-	app.get('/', ctx => {
-		let guid = app.service.guid();
-		let timer = app.service.timer();
-		let list = await app.service.tools.axios.get('url');
-		let cmt = await app.data.cmt;
-		let api = await app.data.api();
-		return query;
-	});
+  app.get('/', ctx => {
+    let guid = app.service.guid();
+    let timer = app.service.timer();
+    let list = await app.service.tools.axios.get('url');
+    let cmt = await app.data.cmt;
+    let api = await app.data.api();
+    return query;
+  });
 }
 ```
 
@@ -173,20 +173,20 @@ module.exports = app => {
 
 ```
 module.exports = app => {
-	app.get('/', ctx => {
-		let query = ctx.get;
-		return query;
-	});
+  app.get('/', ctx => {
+    let query = ctx.get;
+    return query;
+  });
 }
 ```
 2、post
 
 ```
 module.exports = app => {
-	app.get('/', ctx => {
-		let data = ctx.post;
-		return data;
-	});
+  app.get('/', ctx => {
+    let data = ctx.post;
+    return data;
+  });
 }
 ```
 3、form：get和post混合模式
@@ -195,10 +195,10 @@ module.exports = app => {
 
 ```
 module.exports = app => {
-	app.form('/', ctx => {
-		let data = ctx.form;
-		return data;
-	});
+  app.form('/', ctx => {
+    let data = ctx.form;
+    return data;
+  });
 }
 ```
 
@@ -228,16 +228,16 @@ cookie
 
 ```
 module.exports = app => {
-	//设置cookie
-	app.get('/', ctx => {
-		ctx.cookie('did', "did");
-		return 'ok';
-	});
-	//获取cookie
-	app.get('/', ctx => {
-		let did = ctx.cookie('did');
-		return did;
-	});
+  //设置cookie
+  app.get('/', ctx => {
+    ctx.cookie('did', "did");
+    return 'ok';
+  });
+  //获取cookie
+  app.get('/', ctx => {
+    let did = ctx.cookie('did');
+    return did;
+  });
 }
 ```
 
@@ -245,16 +245,16 @@ session
 
 ```
 module.exports = app => {
-	//设置session
-	app.get('/', ctx => {
-		ctx.session.userInfo = 'userInfo';
-		return 'ok';
-	});
-	//获取session
-	app.get('/', ctx => {
-		let userInfo = ctx.session.userInfo;
-		return userInfo;
-	});
+  //设置session
+  app.get('/', ctx => {
+    ctx.session.userInfo = 'userInfo';
+    return 'ok';
+  });
+  //获取session
+  app.get('/', ctx => {
+    let userInfo = ctx.session.userInfo;
+    return userInfo;
+  });
 }
 ```
 
@@ -266,35 +266,35 @@ module.exports = app => {
 
 ```
 module.exports = app => {
-	//读取
-	app.get('/', ctx => {
-		let userList = await app.mongo.User.list();
-		return userList;
-	});
+  //读取
+  app.get('/', ctx => {
+    let userList = await app.mongo.User.list();
+    return userList;
+  });
 }
 ```
 
 ```
 module.exports = app => {
-	app.mongo.model('model', {
-		//建立字段表结构
-		fieldMap: {
-			user_name: {type: String, default: "", name: "用户名"},
-			nick_name: {type: String, default: "", name: "昵称"},
-			status: {type: String, default: "", name: "状态"}			
-		},
-		//创建独立方法
-		methods: {
-			getByUsername(user_name){
-				return new Promise(function(resolve, reject){
-					model.db.find({user_name},{},function(err, data){
-						err && reject(err);
-						resolve(data[0]);
-					});
-				});				
-			}
-		}
-	});
+  app.mongo.model('model', {
+    //建立字段表结构
+    fieldMap: {
+      user_name: {type: String, default: "", name: "用户名"},
+      nick_name: {type: String, default: "", name: "昵称"},
+      status: {type: String, default: "", name: "状态"}      
+    },
+    //创建独立方法
+    methods: {
+      getByUsername(user_name){
+        return new Promise(function(resolve, reject){
+          model.db.find({user_name},{},function(err, data){
+            err && reject(err);
+            resolve(data[0]);
+          });
+        });        
+      }
+    }
+  });
 };
 ```
 
@@ -302,11 +302,11 @@ module.exports = app => {
 
 ```
 module.exports = app => {
-	//模板渲染
-	app.get('/', ctx => {
-		let data = ctx.data;
-		return ctx.tpl('tpl路径', data);
-	});
+  //模板渲染
+  app.get('/', ctx => {
+    let data = ctx.data;
+    return ctx.tpl('tpl路径', data);
+  });
 }
 ```
 
@@ -314,14 +314,14 @@ module.exports = app => {
 
 ```
 module.exports = app => {
-	//读取文件
-	app.get('/', ctx => {
-		return ctx.file('文件路径');
-	});
-	//设置资源目录
-	app.get('/static', ctx => {
-		return ctx.static('目录路径');
-	});
+  //读取文件
+  app.get('/', ctx => {
+    return ctx.file('文件路径');
+  });
+  //设置资源目录
+  app.get('/static', ctx => {
+    return ctx.static('目录路径');
+  });
 }
 ```
 
@@ -333,14 +333,14 @@ module.exports = app => {
 
 ```
 module.exports = app => {
-	//记录日志
-	app.get('/log', ctx => {
-		//字符形式
-		app.log('tag', 'data');
-		//数组对象形式
-		app.log(['tag','tag2'], {data: 'data'});
-		return 'ok';
-	});
+  //记录日志
+  app.get('/log', ctx => {
+    //字符形式
+    app.log('tag', 'data');
+    //数组对象形式
+    app.log(['tag','tag2'], {data: 'data'});
+    return 'ok';
+  });
 }
 ```
 
@@ -358,10 +358,10 @@ onemin内置axios做为httpClient，可直接通过app.curl或app.axios来调用
 
 ```
 module.exports = app => {
-	app.get('/curl', async ctx => {
-		let data = await app.curl('url');
-		return data;
-	});
+  app.get('/curl', async ctx => {
+    let data = await app.curl('url');
+    return data;
+  });
 };
 ```
 
@@ -369,28 +369,28 @@ module.exports = app => {
 
 ```
 module.exports = app => {
-	//设置一个定时任务
-	app.timer('timerid', {
-		name: "一个任务",
-		time: 60,//单位秒
-		task: async () => { //任务
+  //设置一个定时任务
+  app.timer('timerid', {
+    name: "一个任务",
+    time: 60,//单位秒
+    task: async () => { //任务
 
-		}
-	});
-	//修改一个定时任务，value部分会进行覆盖和混合
-	app.timer('timerid', {
-		name: "一个任务",
-		time: 60,//单位秒
-		task: async () => { //任务
+    }
+  });
+  //修改一个定时任务，value部分会进行覆盖和混合
+  app.timer('timerid', {
+    name: "一个任务",
+    time: 60,//单位秒
+    task: async () => { //任务
 
-		}
-	});
-	//获取一个定时任务
-	let timer = app.timer('timerid');
-	//获取所有定时任务
-	let timerList = app.timer.list();
-	//删除一个定时任务
-	app.timer('timerid').remove();
+    }
+  });
+  //获取一个定时任务
+  let timer = app.timer('timerid');
+  //获取所有定时任务
+  let timerList = app.timer.list();
+  //删除一个定时任务
+  app.timer('timerid').remove();
 };
 ```
 
