@@ -19,7 +19,7 @@ module.exports = app => {
 		let data = await app.curl('https://od.sh-d.com/D883F318EF46003A4');
 		return data.data;
 	});
-	app.get('/guid', async ctx => {
+	app.get('/apix/guid', async ctx => {
 		return app.guid();
 	});
 	app.get('/mongo', async ctx => {

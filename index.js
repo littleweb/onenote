@@ -2,7 +2,7 @@ const fs = require('fs');
 const Hapi = require('@hapi/hapi');
 const Disk = require('catbox-disk');
 
-let appPath = process.argv[2] || '';
+let appPath = process.argv[2] || 'demo';
 
 if(!fs.existsSync(`/tmp/hapi`)){
 	fs.promises.mkdir(`/tmp/hapi`, { recursive: true });
