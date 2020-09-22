@@ -1,17 +1,24 @@
 const typeco = require('typeco');
 const moment = require('moment');
 
-module.exports = (app, data, type = true) => {
+module.exports = ({data, type = true}) => {
   const flatten = function(data) {
       var result = {};
       function recurse (cur, prop) {
           if (Object(cur) !== cur) {
               result[prop] = cur;
           } else if (Array.isArray(cur)) {
-               for(var i=0, l=cur.length; i<l; i++)
-                   recurse(cur[i], prop + "[" + i + "]");
-              if (l == 0)
-                  result[prop] = [];
+            let isFlat = cur.filter(item => typeof(item) != 'string').length > 0?false:true;
+            if(isFlat){
+              result[prop] = cur;
+            }else{
+              for(var i=0, l=cur.length; i<l; i++){
+                recurse(cur[i], prop + "[" + i + "]");
+              }
+            }
+            if (l == 0){
+              result[prop] = [];
+            }
           } else {
               var isEmpty = true;
               for (var p in cur) {
@@ -66,7 +73,7 @@ module.exports = (app, data, type = true) => {
         }catch(e){}
       }
       // 第二步：检测日期
-      if(type == 'long' && (String(value).length == 11 || String(value).length == 13)){
+      if(type == 'long' && (String(value).length == 13)){
         if(moment(value).isValid()){
           type = 'date';
         }
@@ -75,7 +82,10 @@ module.exports = (app, data, type = true) => {
       if(typeco.isObject(value)){
         value = "";
       }
-      console.log(type, value);
+      if(typeco.isArray(value)){
+        type = 'array';
+      }
+      // console.log(type, value);
       // 数据类型判断
       // date: 时间类型
       esdata.push({
