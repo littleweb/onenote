@@ -41,6 +41,9 @@ const server = Hapi.server(
 				}
 			}
 		},
+		{
+			plugin: require('@hapi/inert')
+		},
 		//加载exchange插件
 		{
 			plugin: require('./lib/exchange'),
