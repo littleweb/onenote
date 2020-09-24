@@ -24,6 +24,7 @@
   "homepage": "https://github.com/littleweb/onepp#readme",
   "dependencies": {
     "@hapi/hapi": "*",
+    "@hapi/inert": "^6.0.2",
     "axios": "^0.20.0",
     "b64": "^4.1.2",
     "catbox-disk": "*",
