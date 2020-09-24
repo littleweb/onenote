@@ -1,6 +1,6 @@
 module.exports = ({app}) => {
 	app.get('/', ctx => {
-		return app.service.guid();
+		return app.service.guid({app});
 	});
 	app.get('/get', ctx => {
 		return ctx.get;

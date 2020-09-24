@@ -2,7 +2,7 @@
 
 const pm2 = require('pm2');
 var args = require('yargs').argv;
-let appPath = args.app || '';
+let appPath = args.app || './';
 let online = args._.indexOf('online') > -1?' online':'';
 pm2.connect(function(err) {
 	pm2.start({
@@ -15,6 +15,23 @@ pm2.connect(function(err) {
 
 	},function(err, apps) {
 		pm2.disconnect();   // Disconnects from PM2
+		var spawn = require('child_process').spawn;
+		free = spawn('pm2', ['logs'],  { stdio: 'inherit' }); 
+
+		// 捕获标准输出并将其打印到控制台 
+		free.stdout && free.stdout.on('data', function (data) { 
+			console.log(data.toString()); 
+		}); 
+
+		// 捕获标准错误输出并将其打印到控制台 
+		free.stderr && free.stderr.on('data', function (data) { 
+			// console.log(data.toString()); 
+		}); 
+
+		// 注册子进程关闭事件 
+		free.on('exit', function (code, signal) { 
+			console.log(code); 
+		});
 		if (err) throw err
 	});
 });
