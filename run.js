@@ -7,6 +7,7 @@ let online = args._.indexOf('online') > -1?' online':'';
 pm2.connect(function(err) {
 	pm2.start({
 		watch: [appPath],
+		ignore_watch: ['.nuxt', 'pages', 'node_modules'],
 		script    : `${__dirname}/index.js`,     // Script to be run
 		exec_mode : 'cluster',       // Allows your app to be clustered
 		instances : 1, // Optional: Scales your app by 4
