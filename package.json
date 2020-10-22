@@ -54,6 +54,7 @@
     "ua-parser-js": "*",
     "vision": "*",
     "yamljs": "*",
+    "require-from-string": "*",
     "yargs": "*"
   }
 }
