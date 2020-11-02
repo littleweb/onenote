@@ -1,6 +1,6 @@
 {
   "name": "onemin",
-  "version": "1.0.52",
+  "version": "1.0.54",
   "description": "a framework on nodejs",
   "main": "index.js",
   "scripts": {
@@ -55,6 +55,8 @@
     "vision": "*",
     "yamljs": "*",
     "require-from-string": "*",
+    "aliyun-sdk": "*",
+    "mime": "*",
     "yargs": "*"
   }
 }
