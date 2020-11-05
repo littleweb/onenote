@@ -17,12 +17,21 @@ const server = Hapi.server(
         },
         cache: [
 		    {
-		        name      : 'diskCache',
-		        engine    : new Disk({
-			        cachePath: '/tmp/hapi',
-			        cleanEvery: 3600000,
-			        partition : 'cache'
-		        })
+		        name: 'diskCache',
+		        engine: new Disk({
+					cachePath: '/tmp/hapi',
+					cleanEvery: 3600000,
+					partition : 'cache'
+				})
+		    },
+		    {
+				name: 'session',
+				segment: 'session',
+		        engine: new Disk({
+					cachePath: '/tmp/hapi',
+					cleanEvery: 3600000,
+					partition : 'session'
+				})
 		    }
 		]
 	}
@@ -38,6 +47,9 @@ const server = Hapi.server(
 					ttl: 365 * 24 * 60 * 60 * 1000,
 					path: '/',
 					isSecure: false
+				},
+				cache: {
+					cache: 'session'
 				}
 			}
 		},
