@@ -26,7 +26,6 @@ const server = Hapi.server(
 		    },
 		    {
 				name: 'session',
-				segment: 'session',
 		        engine: new Disk({
 					cachePath: '/tmp/hapi',
 					cleanEvery: 3600000,
