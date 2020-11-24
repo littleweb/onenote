@@ -1,6 +1,6 @@
 {
   "name": "onemin",
-  "version": "1.0.62",
+  "version": "1.0.63",
   "description": "a framework on nodejs",
   "main": "index.js",
   "scripts": {
